@@ -1,0 +1,71 @@
+<div class="row align-center" style="padding-left: 15px;padding-bottom: 15px;">
+    <div class="column align-center text-center">
+        <h3 style="color: #623073;">Plan Details Summary</h3>
+    </div>
+</div>
+
+<div class="row align-center" style="padding-left: 15px;padding-bottom: 15px;">
+    <div class="column align-center">
+        <form [formGroup]="courseForm">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <label for="associateId">Associate Id</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="associateId" formControlName="associateId"
+                            style="border-radius: .25rem ! important">
+                        <span class="input-group-btn" style="margin-left:10px">
+                            <button class="btn" name="add" value="add" type="submit"
+                                style="background-color: #e2542f;color: white"
+                                (click)="getPlanSummaryDetailByAssociateId()">Search</button>
+                                <button name="clear" type="submit" value="clear" class="btn btn-light" style="margin-left:15px;"
+                                (click)="clearData()">Clear</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive text-nowrap table-content">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr style="background-color: #623073;color: #fff;">
+                <th class="text-center">Associate Id</th>
+                <th class="text-center">Associate Name</th>
+                <th class="text-center">Title</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Percentage</th>
+                <th class="text-center">Start Date</th>
+                <th class="text-center">Completion Date</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let planDetail of summaryPlanDetails;let i=index">
+                <td class="text-center">{{planDetail.AssociateId}}</td>
+                <td>{{planDetail.Name}}</td>
+                <td>{{planDetail.Title}}</td>
+                <td>{{planDetail.OnboardingStatus}}</td>
+                <td class="text-center">{{planDetail.CompletionPercentage}}</td>
+                <td>{{planDetail.StartDate}}</td>
+                <td>{{planDetail.CompletionDate}}</td>
+                <td>
+                    <i class="fa fa-eye" (click)="getPlanDetailsForCurrentUser(planDetail.AssociateId)" style="font-size: 25px !important;" aria-hidden="true"></i>
+                </td>
+            </tr>
+            <tr *ngIf="summaryPlanDetails.length===0">
+                <td class="text-center" colspan="100%"> No Record Found</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row" *ngIf="summaryPlanDetails.length!=0">
+    <div class="col" style="margin-right: 0px !important;">
+        <pagination [boundaryLinks]="true" [totalItems]="totalItems" class="float-right"
+            (pageChanged)="pageChanged($event)" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+            firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+    </div>
+</div>

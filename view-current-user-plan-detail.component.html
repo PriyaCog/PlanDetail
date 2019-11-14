@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12">
+        <span class="one page-title">Associate's Plan Detail</span>
+        <i class="fa fa-window-close float-right" style="font-size: 25px !important;" (click)="onNoClick()"
+            aria-hidden="true"></i>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="table-responsive text-nowrap table-content">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+            <tr style="background-color: #623073;color: #fff;">
+              <th class="text-center">Week</th>
+              <th class="text-center">Day</th>
+              <th class="text-center">Course Code</th>
+              <th class="text-center">Course Name</th>
+              <th class="text-center">Scheduled date</th>
+              <th class="text-center">Completion status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let associateplan of associatePlans; let i= index">
+              <td class="text-center">{{associateplan.Week}}</td>
+              <td class="text-center">{{associateplan.Day}}</td>
+              <td class="col-md-3">{{associateplan.CourseCode}}</td>
+              <td class="col-md-3">{{associateplan.CourseTitle}}</td>
+              <td class="text-center">{{associateplan.Date  | date: 'dd-MM-yyyy'}}</td>
+              <td>
+                <a *ngIf="associateplan.DocumentType === 'File' && associateplan.Attachments"
+                  (click)="viewFile(associateplan)">View</a>
+                <span *ngIf="associateplan.DocumentType === 'Date'">
+                  {{associateplan.CompletionDate | date: 'dd-MM-yyyy' }}
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="!associatePlans">
+              <td class="text-center" colspan="100%"> No Record Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
+
