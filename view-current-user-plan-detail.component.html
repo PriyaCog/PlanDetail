@@ -24,7 +24,7 @@
               <td class="text-center">{{associateplan.Week}}</td>
               <td class="text-center">{{associateplan.Day}}</td>
               <td class="col-md-3">{{associateplan.CourseCode}}</td>
-              <td class="col-md-3">{{associateplan.CourseTitle}}</td>
+              <td class="col-md-3"><a (click)="showCourseDetails(associateplan)">{{associateplan.CourseTitle}}</a></td>
               <td class="text-center">{{associateplan.Date  | date: 'dd-MM-yyyy'}}</td>
               <td>
                 <a *ngIf="associateplan.DocumentType === 'File' && associateplan.Attachments"

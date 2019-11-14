@@ -2,6 +2,7 @@ import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { PlanDetails } from 'src/app/providers/model/planDetails';
 import { ViewPlanProofComponent } from '../associate-plan/view-plan-proof/view-plan-proof.component';
+import { CourseDetailModelComponent } from '../associate-plan/course-detail-model/course-detail-model.component';
 
 @Component({
   selector: 'app-view-current-user-plan-detail',
@@ -26,6 +27,19 @@ export class ViewCurrentUserPlanDetailComponent implements OnInit {
   viewFile(associateplan: PlanDetails): void {
     const dialogRef = this.dialog.open(ViewPlanProofComponent, {
       maxHeight: "710px",
+      disableClose: true,
+      data: { associateplan: associateplan }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+      }
+    });
+  }
+
+  showCourseDetails(associateplan: PlanDetails) {
+    const dialogRef = this.dialog.open(CourseDetailModelComponent, {
+      maxHeight: "700px",
       disableClose: true,
       data: { associateplan: associateplan }
     });
